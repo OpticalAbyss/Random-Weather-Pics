@@ -1,0 +1,14 @@
+{
+  "name": "weatherimage",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./src/server.js",
+  "scripts": {
+    "test": "node ./src/server.js"
+  },
+  "author": "Obyss",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
