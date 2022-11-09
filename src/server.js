@@ -270,16 +270,21 @@ app.get('',(req, res)=>{
           const objData = JSON.parse(chunk);
           const long = objData.result.geometry.location.lng
           const lat = objData.result.geometry.location.lat
-          const photoref = objData.result.photos[Math.round(Math.random())].photo_reference
-          requests(`https://maps.googleapis.com/maps/api/place/photo?maxwidth=1920&photo_reference=${photoref}&key=${apiKey}`, {json: true})
+          const photoref = objData.result.photos[Math.floor(Math.random() * 2)].photo_reference
+          requests(`https://maps.googleapis.com/maps/api/place/photo?maxwidth=3840&photo_reference=${photoref}&key=${apiKey}`, {json: true})
             .on('data', function (chunk) {
               const imageURL = chunk.toString().slice(168, 168 + 154)
                 requests(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${weatherAPIkey}`, {json: true})
                   .on(`data`, (chunk)=>{
-                    console.log(chunk)
+                    const localeData = JSON.parse(chunk)
                     res.render('index', {
-                      pageTitle: `Pleasant Weather`,
-                      image: imageURL
+                      pageTitle: `Rando Places and Their Weather`,
+                      image: imageURL,
+                      cloudy: localeData.weather[0].main,
+                      temp: Math.round(localeData.main.temp -273),
+                      feelsLike: Math.round(localeData.main.feels_like - 273),
+                      name: localeData.name,
+                      country: localeData.sys.country,
                     })
                   
                   });

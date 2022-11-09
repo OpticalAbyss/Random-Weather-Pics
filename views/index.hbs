@@ -2,16 +2,63 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
   <title>{{pageTitle}}</title>
+  <style>
+.box
+{
+  display: grid;
+  align-self: center;
+  align-items: center ;
+  justify-content: center;
+  z-index: 1;
+  padding-top: 18%;
+  position:center;
+  color: rgb(12, 158, 151);
+}
+.weather
+{
+  align-items: center;
+  color:white;
+  font-size:3rem;
+  vertical-align: top;
+  text-align: center;
+}
+.temp
+{
+  color:white;
+  font-size: 2rem;
+  vertical-align: middle;
+}
+.AreaName
+{
+  color:white;
+  font-size: 3rem ;
+  vertical-align: bottom;
+  text-align: center;
+}
+
+</style>
 </head>
-<body style="content: url({{image}});
-  width: 100%;
-  height: 100%;
+<body style="background-color: black">
+  <div  style="content: url({{image}});
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  z-index: -10;">
-  <h1>Hello</h1>
+  position: fixed;
+  width 100%;
+  height: 100%;
+  background-color: black;
+  filter: blur(0px);
+  -webkit-filter: blur(0px);
+  z-index: -1;">
+</div>
+  <div class="box">
+    <h1 class="weather">{{cloudy}}</h1>
+    
+    <h1 class="temp">Temp : {{temp}} &deg; C | Feels Like: {{feelsLike}} &deg; C </h1>
+    
+    <h1 class="AreaName">{{name}} , {{country}}</h1>
+  </div>
 </body>
 </html>
